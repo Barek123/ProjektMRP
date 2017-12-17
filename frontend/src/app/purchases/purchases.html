@@ -1,0 +1,15 @@
+<acme-navbar creation-date="main.creationDate" tab="purchases"></acme-navbar>
+<div class="main-container">
+    <h4>nowe zamówienia</h4>
+    <div class="col-md-6">
+        <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="open" datepicker-options="dateOptions"
+                ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open = true">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+        </p>
+    </div>
+</div>

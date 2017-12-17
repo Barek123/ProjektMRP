@@ -1,0 +1,12 @@
+<div ng-if="vm.connections.parentname!=undefined">
+    <div class="btn btn-default product-element-with-radius" ng-value="vm.connections.parentname+'('+vm.connections.number+')'">
+
+        <span class="{{vm.getIcon()}} pull-left" style="margin-left:5px; margin-top:4px;" ng-click="vm.showChildren = !vm.showChildren" aria-hidden="true"></span> {{vm.connections.parentname}} ({{vm.connections.number}})
+        <a class="pull-right" ng-if="vm.connections.level ==2" style="margin-right:20px" ng-click="vm.deleteProduct(product)" >
+            <span class="fa fa-trash-o" aria-hidden="true"></span>
+        </a>
+    </div>
+    <ul ng-if="vm.showChildren">
+        <connection-directive ng-repeat="child in vm.connections.products" connections="child"  callback="callback()" main="vm.connections"></connection-directive>
+    </ul>
+</div>

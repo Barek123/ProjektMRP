@@ -1,0 +1,69 @@
+<acme-navbar creation-date="main.creationDate" tab="connections"></acme-navbar>
+<div class="main-container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h4>Produkty</h4>
+                </div>
+                <div class="panel-body product-panel">
+                    <div ng-click="vm.productClick(product.id)" class="btn btn-default product-element" ng-repeat="product in vm.products  | filter:vm.productQuery">
+                       {{product.productName}}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="text" ng-model="vm.productQuery" placeholder="Wyszukaj produktu" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-6" ng-if="vm.connections!=undfined">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h4>Połączenia</h4>
+                </div>
+                <div class="panel-body product-panel-max-height">
+                    <connection-directive connections="vm.connections" callback = "vm.getConnections()"></connection-directive>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" ng-if="vm.connections!=undfined">
+            <div class="panel panel-default" ng-if="!vm.addedProduct.id">
+                <div class="panel-heading text-center" style="width:100%;">
+                    <h4>Dodaj produkt</h4>
+                </div>
+                <div class="panel-body product-panel">
+                    <input type="button" ng-click="vm.addProductToAssociation(product)" class="btn btn-default product-element" ng-repeat="product in vm.productsExceptOne"
+                        ng-value="product.productName">
+                </div>
+            </div>
+
+            <div ng-if="vm.addedProduct.id" class="panel panel-default">
+                <div class="panel-heading text-center" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>
+                                <p class="label-input">Dodaj produkt "{{vm.addedProduct.productName}}" w ilości: </p>
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="number" class="form-control" placeholder="Ilość" ng-model="vm.numberProductToAdd" />
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <input type="submit" ng-click="vm.addedProduct = {}" class="btn btn-default" value="Anuluj">
+                            <input type="submit" ng-click="vm.addConnection()" class="btn btn-default" value="Zapisz">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

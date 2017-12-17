@@ -1,0 +1,17 @@
+<div class="">
+	<nav class="navbar navbar-default custom-navbar" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"><img class="nav-logo" src="assets/images/mrpii.png"/></a>
+		</div>
+		<div class="collapse navbar-collapse nav-items" uib-collapse="isNavCollapsed">
+			<ul class="nav navbar-nav">
+				<li ng-class="{active: vm.tab=='products'}"><a href="#!/products">Produkty</a></li>
+				<li ng-class="{active: vm.tab=='connections'}"><a href="#!/connections">Połączenia</a></li>
+				<li ng-class="{active: vm.tab=='purchases'}"><a href="#!/purchases">Zamówienia</a></li>
+			</ul>
+			<ul class="nav navbar-nav pull-right">
+				<li><a href="#">Wyloguj</a></li>
+			</ul>
+		</div>
+	</nav>
+</div>

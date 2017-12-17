@@ -1,0 +1,34 @@
+.product-element{
+    width: 100% !important;
+    padding: 5px;
+    padding-right: 10px;
+    margin: 0px !important;
+    border-radius: 0px ;
+}
+.product-element-with-radius{
+    width: 100% !important;
+    padding: 5px;
+    margin: 0px;
+    border-top:0px;
+    border-left:0px;
+    border-top:0px;
+    border-radius: 0px;
+}
+
+.product-panel{
+    padding: 0px;
+    height: 300px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.product-panel-max-height{
+    padding: 0px;
+    min-height:10px;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.bigger-margin-top{
+    margin-top:7px;
+}
