@@ -28,7 +28,7 @@ public class PurchaseHistory {
     @JsonView(Views.PurchaseHistory.class)
     private Date endDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product", referencedColumnName = "id")
     @JsonView(Views.PurchaseHistory.class)
     private Product product;

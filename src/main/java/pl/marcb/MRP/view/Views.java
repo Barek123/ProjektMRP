@@ -16,4 +16,6 @@ public class Views {
 	}
 	public static class StorageUpdate extends Public {
 	}
+	public static class MrpDto extends Public {
+	}
 }

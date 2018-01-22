@@ -18,5 +18,17 @@ function routerConfig($routeProvider) {
 		templateUrl : 'app/purchases/purchases.html',
 		controller : 'PurchasesController',
 		controllerAs : 'vm'
+	// }).when('/edit/:deck', {
+	// 	templateUrl : 'app/edit_deck/edit_deck.html',
+	// 	controller : 'EditDeckController',
+	// 	controllerAs : 'vm'
+	// }).when('/manage', {
+	// 	templateUrl : 'app/manage/manage.html',
+	// 	controller : 'ManageController',
+	// 	controllerAs : 'vm'
+	// }).when('/browse', {
+	// 	templateUrl : 'app/browse/browse.html',
+	// 	controller : 'BrowseController',
+	// 	controllerAs : 'vm'
 	}).otherwise('/home');
 }

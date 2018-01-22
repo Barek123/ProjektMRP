@@ -19,23 +19,23 @@ public class Product {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    @JsonView(Views.Product.class)
+    @JsonView({Views.Product.class, Views.PurchaseHistory.class})
     private Long id;
 
     @Column(name = "product_name")
-    @JsonView(Views.Product.class)
+    @JsonView({Views.Product.class, Views.PurchaseHistory.class})
     private String productName;
 
     @Column(name = "product_foq")
-    @JsonView(Views.Product.class)
+    @JsonView({Views.Product.class, Views.PurchaseHistory.class})
     private Integer productFOQ;
 
     @Column(name = "product_unit")
-    @JsonView(Views.Product.class)
+    @JsonView({Views.Product.class, Views.PurchaseHistory.class})
     private UnitEnum productUnit;
 
     @Column(name = "product_lt")
-    @JsonView(Views.Product.class)
+    @JsonView({Views.Product.class, Views.PurchaseHistory.class})
     private Integer productLT;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")

@@ -1,15 +1,104 @@
 <acme-navbar creation-date="main.creationDate" tab="purchases"></acme-navbar>
 <div class="main-container">
-    <h4>nowe zamówienia</h4>
-    <div class="col-md-6">
-        <p class="input-group">
-            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="open" datepicker-options="dateOptions"
-                ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open = true">
-                    <i class="glyphicon glyphicon-calendar"></i>
+    <h4>Nowe zamówienia</h4>
+    <div class="row">
+
+        <div class="col-md-3">
+            <select class="form-control" ng-model="vm.productToSend">
+                <option ng-repeat="product in vm.products" ng-value="product">{{product.productName}}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.deadlineDate" is-open="open" datepicker-options="dateOptions"
+                    ng-required="true" close-text="Close" placeholder="Termin wykonania" alt-input-formats="altInputFormats"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open = true">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+        <div class="col-md-2">
+            <input type="number" class="form-control" placeholder="Ilość" ng-model="vm.productCount" />
+        </div>
+        <div class="col-md-offset-1">
+
+            <button type="button" class="btn btn-default" ng-click="vm.addPurchase()">
+                <i class="fa fa-save"></i> Zapisz
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Poniedziałek</th>
+                    <th scope="col">Wtorek</th>
+                    <th scope="col">Środa</th>
+                    <th scope="col">Czwartek</th>
+                    <th scope="col">Piątek</th>
+                    <th scope="col">Sobota</th>
+                    <th scope="col">Niedziela</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in vm.filteredPurchases">
+                    <th>{{row.index+1}}</th>
+                    <td>{{vm.getValueByDay(row.index, 1)}}</td>
+                    <td>{{vm.getValueByDay(row.index, 2)}}</td>
+                    <td>{{vm.getValueByDay(row.index, 3)}}</td>
+                    <td>{{vm.getValueByDay(row.index, 4)}}</td>
+                    <td>{{vm.getValueByDay(row.index, 5)}}</td>
+                    <td>{{vm.getValueByDay(row.index, 6)}}</td>
+                    <td>{{vm.getValueByDay(row.index, 7)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-left">
+            <div class="row">
+                <button type="button" class="btn btn-default col-md-6" ng-click="vm.changeDate('week', false)">
+                    <i class="fa fa-arrow-left pull-left"></i> Poprzedni tydzień
                 </button>
-            </span>
-        </p>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-default col-md-6" ng-click="vm.changeDate('months', false)">
+                    <i class="fa fa-arrow-left pull-left"></i> Poprzedni miesiąc
+                </button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-default col-md-6" ng-click="vm.changeDate('years', false)">
+                    <i class="fa fa-arrow-left pull-left"></i> Poprzedni rok
+                </button>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <br>
+            <br>
+            <h4>{{vm.dateValueToShow}}</h4>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <button type="button" class="btn pull-right btn-default col-md-6" ng-click="vm.changeDate('week', true)">
+                    Natępny tydzień
+                    <i class="fa fa-arrow-right pull-right"></i>
+                </button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn pull-right btn-default col-md-6" ng-click="vm.changeDate('months', true)">
+                    Natępny miesiąc
+                    <i class="fa fa-arrow-right pull-right"></i>
+                </button>
+            </div>
+            <div class="row">
+                <button type="button" class="btn pull-right btn-default col-md-6" ng-click="vm.changeDate('years', true)">
+                    Natępny rok
+                    <i class="fa fa-arrow-right pull-right"></i>
+            </div>
+        </div>
     </div>
 </div>

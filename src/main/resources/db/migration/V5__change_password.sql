@@ -1,0 +1,1 @@
+update account set pass='$2a$10$J3NWVyNRlZxOwLnhwBBlH.9BobZY7twpNZB8xrDYFzkCX5X73.r96' where id=1;

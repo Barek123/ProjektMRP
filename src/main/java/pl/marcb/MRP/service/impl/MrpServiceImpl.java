@@ -43,7 +43,11 @@ public class MrpServiceImpl implements MrpService {
     }
 
     @Override
-    public void generateMRP(Date finishDate, Product product, Integer number) throws BusinessEntityNotFoundException, LogicException {
+    public List<PurchaseHistory> generateMRP(Date finishDate, Long productId, Integer number) throws BusinessEntityNotFoundException, LogicException {
+        Product product = productRepository.findOne(productId);
+        if (product == null) {
+            throw new BusinessEntityNotFoundException("product not found");
+        }
         List<Storage> storageList = storageRepository.findAllByProduct(product);
         if (storageList.size() == 0) {
             throw new BusinessEntityNotFoundException("not found storage list");
@@ -56,16 +60,17 @@ public class MrpServiceImpl implements MrpService {
 
         Date now = new Date();
         if(purchaseHistoryList.stream()
-                .map(c -> c.getStartDate().getTime()> now.getTime())
+                .map(c -> c.getStartDate().getTime()< now.getTime())
                 .filter(c -> c.equals(true))
                 .count() > 0){
             throw new LogicException("not correct purchase history list");
         }
 
-        purchaseHistoryList.forEach(c -> {
-            purchaseHistoryRepository.save(c);
+        return purchaseHistoryList.stream().map(c -> {
+            PurchaseHistory save = purchaseHistoryRepository.save(c);
             updateStorage(c);
-        });
+            return save;
+        }).collect(Collectors.toList());
     }
 
     private void updateStorage(PurchaseHistory purchaseHistory){
